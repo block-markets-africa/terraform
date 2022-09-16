@@ -84,6 +84,7 @@ func buildArmClient(ctx context.Context, config BackendConfig) (*ArmClient, erro
 		// OIDC
 		IDTokenRequestURL:   config.OIDCRequestURL,
 		IDTokenRequestToken: config.OIDCRequestToken,
+		IDToken: config.OIDCToken,  //the IDToken field was added to github.com/hashicorp/go-azure-helpers/authentication.Builder in v0.40.0
 
 		// Feature Toggles
 		SupportsAzureCliToken:          true,

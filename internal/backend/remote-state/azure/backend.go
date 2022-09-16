@@ -157,6 +157,13 @@ func New() backend.Backend {
 				Description: "The bearer token for the request to the OIDC provider",
 			},
 
+			"oidc_token": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("ARM_OIDC_TOKEN", ""),
+				Description: "The OIDC ID token for use when authenticating as a Service Principal using OpenID Connect.",
+			},
+
 			// Feature Flags
 			"use_azuread_auth": {
 				Type:        schema.TypeBool,
@@ -206,6 +213,7 @@ type BackendConfig struct {
 	MsiEndpoint                   string
 	OIDCRequestURL                string
 	OIDCRequestToken              string
+	OIDCToken                     string
 	ResourceGroupName             string
 	SasToken                      string
 	SubscriptionID                string
@@ -240,6 +248,7 @@ func (b *Backend) configure(ctx context.Context) error {
 		MsiEndpoint:                   data.Get("msi_endpoint").(string),
 		OIDCRequestURL:                data.Get("oidc_request_url").(string),
 		OIDCRequestToken:              data.Get("oidc_request_token").(string),
+		OIDCToken:                     data.Get("oidc_token").(string),
 		ResourceGroupName:             data.Get("resource_group_name").(string),
 		SasToken:                      data.Get("sas_token").(string),
 		StorageAccountName:            data.Get("storage_account_name").(string),

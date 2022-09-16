@@ -64,3 +64,4 @@ website/build-local:
 .NOTPARALLEL:
 
 .PHONY: fmtcheck generate protobuf website website-test staticcheck website/local website/build-local
+
